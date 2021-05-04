@@ -1,0 +1,17 @@
+<div class="lists-container">
+  <h3>Search Result: <%= @count %> tickets in total, <%= @tickets_shown_per_page %> per page</h3>
+  <ul> 
+    <% @tickets.each do |ticket|%>      
+      <li class="ticket-list">
+        <a href="/list/<%= ticket.id %>"><%= ticket.subject %> </a>  
+      </li>
+      <%end %>    
+  </ul>
+
+  <div class="page-number">
+    <% for i in 1..@pages%>
+      <a href="/list/pages/<%= i %>"><%= i %></a>  
+    <% end %>    
+  </div>
+
+</div>
