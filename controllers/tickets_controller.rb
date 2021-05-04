@@ -31,6 +31,18 @@ class TicketViewer < Sinatra::Application
     end
   end
 
+  # route that shows the details of a ticket
+  get "/list/:ticket_id" do
+    begin
+      ticket_id = params[:ticket_id]
+      show_ticket_details(ticket_id)
+      erb(:ticket_details)
+    rescue => ex
+      @error_message = ex.message
+      erb :error
+    end
+  end
+
   # function to make requests of showing whatever pages
   def show_tickets_list(page_number)
     @page_number = page_number
@@ -53,6 +65,33 @@ class TicketViewer < Sinatra::Application
         @tickets << ticket
       end
       @tickets
+    elsif res.key?("error")
+      raise res["error"]
+    else
+      raise "unknown error from API"
+    end
+  end
+
+  # function to make requests of showing the details of a ticket
+  def show_ticket_details(ticket_id)
+    @ticket_id = ticket_id
+    url = "https://alanli.zendesk.com/api/v2/tickets/#{@ticket_id}.json"
+
+    res = AuthenticationHelper.make_req_to_api(url)
+    @ticket = find_ticket_details(res)
+    @ticket.requester_name = get_user_name(@ticket.requester_id)
+  end
+
+  def get_user_name(requester_id)
+    url = "https://alanli.zendesk.com/api/v2/users/#{requester_id}.json"
+    res = AuthenticationHelper.make_req_to_api(url)
+    name = res["user"]["name"]
+  end
+
+  def find_ticket_details(res)
+    if res.key?("ticket")
+      ticket_info = res["ticket"]
+      ticket = Ticket.new(ticket_info)
     elsif res.key?("error")
       raise res["error"]
     else
