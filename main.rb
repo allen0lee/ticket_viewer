@@ -5,4 +5,3 @@ require_relative 'controllers/tickets_controller.rb'
 class TicketViewer < Sinatra::Application
 end
 
-TicketViewer.new
