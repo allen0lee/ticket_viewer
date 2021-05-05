@@ -26,11 +26,18 @@ You can navigate between pages by clicking the page numbers at the bottom.<br />
 You can see the details of each ticket by clicking their subjects.
 
 4. Run the test<br />
-This solution provides test on <br />
+This solution provides test on:
+* User authication when making requests to the Zendesk API
+* Whether valid tickets are coming back
+* Whether single ticket details are available
+* Whether the requester's name of a ticket is available
+<br /><br />
 To run the test, in the repo directory window, run the test file by typing: 
 
-
-### 3. Key things to highkight
-       mvc
-       authentication method, use ENV to replace API token
-       test
+### 3. Key things to know
+This solution is built using a design pattern called model-view-controller(MVC).<br />
+* Model - `Ticket` class
+* View - render different pages (tickets list, single ticket details, error) on the web browser, using model data 
+* Controller - routes and methods that decide which view would be displayed and prepare the data needed by views 
+  
+       
