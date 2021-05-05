@@ -32,7 +32,7 @@ This solution provides test on:
 * Whether single ticket details are available
 * Whether the requester's name of a ticket is available
 <br /><br />
-To run the test, in the repo directory window, run the test file by typing: 
+To run the test, navigate to the `test` folder, run the test file by typing: `ruby authentication_helper_test.rb`
 
 ### 3. Key things to know
 This solution is built using a design pattern called model-view-controller(MVC).<br />
