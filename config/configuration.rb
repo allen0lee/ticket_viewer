@@ -2,8 +2,8 @@
 
 class Configuration
   def self.encode_token
-    username = "allen0lee@gmail.com"
+    email_address = "allen0lee@gmail.com"
     token = "bhSIXtaecGvqTHiJfx63dUNJxzbuXeBRr5ZfAXcy"
-    full_token = Base64.strict_encode64("#{username}/token:#{token}")
+    full_token = Base64.strict_encode64("#{email_address}/token:#{token}")
   end
 end
