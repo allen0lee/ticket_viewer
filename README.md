@@ -1,1 +1,36 @@
 # ticket_viewer
+
+### 1. Solution summary
+This solution is built to: 
+1. Connect to the Zendesk API
+2. Request all the tickets for my trial account
+3. Display them in a list
+4. Page through tickets with each page showing maximum 25 tickets
+5. Display individual ticket details
+<br /><br />
+Technologies used: Ruby 2.7.0, Ruby Sinatra, Minitest
+
+### 2. How to run this solution
+1. Install RVM(Ruby Version Manager) and Ruby 2.7.0 if you don't have it in your system. 
+
+2. Install dependencies<br />
+Clone this solution repo to your machine, inside the repo directory, type the following in terminal window: `bundle`<br /> 
+If you can't find the command, install by typing: `gem install bundler`<br />
+This will install the dependencies required to run the solution.
+
+3. Run the solution<br />
+In the repo directory window, type: `rackup  config.ru`<br />
+Open your web browser, type in: `localhost:9292`<br />
+You will see the 1st page of a list of tickets.<br />
+You can navigate between pages by clicking the page numbers at the bottom.<br />
+You can see the details of each ticket by clicking their subjects.
+
+4. Run the test<br />
+This solution provides test on <br />
+To run the test, in the repo directory window, run the test file by typing: 
+
+
+### 3. Key things to highkight
+       mvc
+       authentication method, use ENV to replace API token
+       test
