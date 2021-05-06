@@ -40,6 +40,7 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-cors (1.2.0)
     sinatra-reloader (1.0)
       sinatra-contrib
     tilt (2.0.10)
@@ -54,6 +55,7 @@ DEPENDENCIES
   minitest-reporters
   pry
   sinatra
+  sinatra-cors (~> 1.2)
   sinatra-reloader
 
 BUNDLED WITH
