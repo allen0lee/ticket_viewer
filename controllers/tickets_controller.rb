@@ -8,7 +8,6 @@ require_relative '../helpers/authentication_helper.rb'
 
 class TicketViewer < Sinatra::Application
   register Sinatra::Cors
-
   set :allow_origin, "http://example.com"
   set :allow_methods, "GET,HEAD,POST"
   set :allow_headers, "content-type,if-modified-since"
@@ -19,10 +18,29 @@ class TicketViewer < Sinatra::Application
     begin
       page_number = 1
       show_tickets_list(page_number)
-      erb(:tickets_list)
+      # erb(:tickets_list)
+      content_type :json
+      {
+        "tickets"=> @tickets.map{|x|
+          {
+            "status"=> x.status,
+            "subject"=> x.subject,
+            "requester"=> get_user_name(x.requester_id),
+            "requested"=> x.created_at
+          }
+        },
+        "pages"=> @pages,
+        "count"=> @count
+      }.to_json 
+      # binding.pry
+
     rescue => ex
       @error_message = ex.message
-      erb(:error)
+      # erb(:error)
+      content_type :json
+      {
+        "error"=> @error_message
+      }.to_json 
     end  
   end
 
