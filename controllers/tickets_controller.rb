@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/cors'
+require 'sinatra/cross_origin'
 require 'pry'
 require 'sinatra/reloader' if settings.development?
 require 'httparty'
@@ -7,11 +7,13 @@ require_relative '../models/ticket.rb'
 require_relative '../helpers/authentication_helper.rb'
 
 class TicketViewer < Sinatra::Application
-  register Sinatra::Cors
-  set :allow_origin, "http://example.com"
-  set :allow_methods, "GET,HEAD,POST"
-  set :allow_headers, "content-type,if-modified-since"
-  set :expose_headers, "location,link"
+  set :bind, '0.0.0.0'
+  configure do
+    enable :cross_origin
+  end
+  before do
+    response.headers['Access-Control-Allow-Origin'] = '*'
+  end
 
   # route that shows page 1 of tickets list 
   get "/" do
