@@ -1,5 +1,5 @@
 class Ticket
-  attr_accessor :id, :status, :subject, :requester_id, :created_at, :type, :priority, :description, :submitter_id, :updated_at
+  attr_accessor :id, :status, :subject, :requester_id, :created_at, :type, :priority, :description, :submitter_id, :updated_at, :requester_name
 
   def initialize(info)
     @id = info["id"]

@@ -25,16 +25,16 @@ class TicketViewer < Sinatra::Application
       {
         "tickets"=> @tickets.map{|x|
           {
+            "id"=> x.id,
             "status"=> x.status,
             "subject"=> x.subject,
-            "requester"=> get_user_name(x.requester_id),
+            # "requester"=> get_user_name(x.requester_id),
             "requested"=> x.created_at
           }
         },
         "pages"=> @pages,
         "count"=> @count
       }.to_json 
-      # binding.pry
 
     rescue => ex
       @error_message = ex.message
@@ -52,9 +52,28 @@ class TicketViewer < Sinatra::Application
       page_number = params[:page_number]
       show_tickets_list(page_number)
       erb(:tickets_list)
+      # content_type :json
+      # {
+      #   "tickets"=> @tickets.map{|x|
+      #     {
+      #       "id"=> x.id,
+      #       "status"=> x.status,
+      #       "subject"=> x.subject,
+      #       # "requester"=> get_user_name(x.requester_id),
+      #       "requested"=> x.created_at
+      #     }
+      #   },
+      #   "pages"=> @pages,
+      #   "count"=> @count
+      # }.to_json 
+
     rescue => ex
       @error_message = ex.message
-      erb(:error)
+      # erb(:error)
+      content_type :json
+      {
+        "error"=> @error_message
+      }.to_json 
     end
   end
 
@@ -64,9 +83,28 @@ class TicketViewer < Sinatra::Application
       ticket_id = params[:ticket_id]
       show_ticket_details(ticket_id)
       erb(:ticket_details)
+
+      # content_type :json
+      # {
+      #   "tickets"=> @tickets.map{|x|
+      #     {
+      #       "id"=> x.id,
+      #       "status"=> x.status,
+      #       "subject"=> x.subject,
+      #       "description"=> x.description,
+      #       "requester"=> get_user_name(x.requester_id),
+      #       "requested"=> x.created_at
+      #     }
+      #   }
+      # }.to_json 
+
     rescue => ex
       @error_message = ex.message
-      erb :error
+      # erb :error
+      content_type :json
+      {
+        "error"=> @error_message
+      }.to_json 
     end
   end
 
