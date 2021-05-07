@@ -25,7 +25,7 @@ class TicketViewer < Sinatra::Application
       {
         "tickets"=> @tickets.map{|x|
           {
-            "id"=> x.id,
+            # "id"=> x.id,
             "status"=> x.status,
             "subject"=> x.subject,
             # "requester"=> get_user_name(x.requester_id),
