@@ -25,7 +25,7 @@ class TicketViewer < Sinatra::Application
       {
         "tickets"=> @tickets.map{|x|
           {
-            # "id"=> x.id,
+            "id"=> x.id,
             "status"=> x.status,
             "subject"=> x.subject,
             # "requester"=> get_user_name(x.requester_id),
@@ -51,21 +51,21 @@ class TicketViewer < Sinatra::Application
     begin
       page_number = params[:page_number]
       show_tickets_list(page_number)
-      erb(:tickets_list)
-      # content_type :json
-      # {
-      #   "tickets"=> @tickets.map{|x|
-      #     {
-      #       "id"=> x.id,
-      #       "status"=> x.status,
-      #       "subject"=> x.subject,
-      #       # "requester"=> get_user_name(x.requester_id),
-      #       "requested"=> x.created_at
-      #     }
-      #   },
-      #   "pages"=> @pages,
-      #   "count"=> @count
-      # }.to_json 
+      # erb(:tickets_list)
+      content_type :json
+      {
+        "tickets"=> @tickets.map{|x|
+          {
+            "id"=> x.id,
+            "status"=> x.status,
+            "subject"=> x.subject,
+            # "requester"=> get_user_name(x.requester_id),
+            "requested"=> x.created_at
+          }
+        },
+        "pages"=> @pages,
+        "count"=> @count
+      }.to_json 
 
     rescue => ex
       @error_message = ex.message
