@@ -82,21 +82,20 @@ class TicketViewer < Sinatra::Application
     begin
       ticket_id = params[:ticket_id]
       show_ticket_details(ticket_id)
-      erb(:ticket_details)
+      # erb(:ticket_details)
 
-      # content_type :json
-      # {
-      #   "tickets"=> @tickets.map{|x|
-      #     {
-      #       "id"=> x.id,
-      #       "status"=> x.status,
-      #       "subject"=> x.subject,
-      #       "description"=> x.description,
-      #       "requester"=> get_user_name(x.requester_id),
-      #       "requested"=> x.created_at
-      #     }
-      #   }
-      # }.to_json 
+      content_type :json
+      {
+        "ticket"=> 
+          {
+            "id"=> @ticket.id,
+            "status"=> @ticket.status,
+            "subject"=> @ticket.subject,
+            "description"=> @ticket.description,
+            "requester"=> @ticket.requester_name,
+            "requested"=> @ticket.created_at
+          }
+      }.to_json 
 
     rescue => ex
       @error_message = ex.message
