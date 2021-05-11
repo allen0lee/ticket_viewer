@@ -4,7 +4,7 @@ require 'pry'
 require 'sinatra/reloader' if settings.development?
 require 'httparty'
 require_relative '../models/ticket.rb'
-require_relative '../helpers/authentication_helper.rb'
+require_relative '../helpers/api_helper.rb'
 
 class TicketViewer < Sinatra::Application
   set :bind, '0.0.0.0'
@@ -112,7 +112,7 @@ class TicketViewer < Sinatra::Application
     @tickets_shown_per_page = 25
     url = "https://alanli.zendesk.com/api/v2/tickets.json?page=#{@page_number}&per_page=#{@tickets_shown_per_page}"
 
-    res = AuthenticationHelper.make_req_to_api(url)
+    res = ApiHelper.make_req_to_api(url)
     @tickets = find_tickets(res)
     @count = res["count"]
     @pages = (@count.to_f / @tickets_shown_per_page).ceil
@@ -140,14 +140,14 @@ class TicketViewer < Sinatra::Application
     @ticket_id = ticket_id
     url = "https://alanli.zendesk.com/api/v2/tickets/#{@ticket_id}.json"
 
-    res = AuthenticationHelper.make_req_to_api(url)
+    res = ApiHelper.make_req_to_api(url)
     @ticket = find_ticket_details(res)
     @ticket.requester_name = get_user_name(@ticket.requester_id)
   end
 
   def get_user_name(requester_id)
     url = "https://alanli.zendesk.com/api/v2/users/#{requester_id}.json"
-    res = AuthenticationHelper.make_req_to_api(url)
+    res = ApiHelper.make_req_to_api(url)
     name = res["user"]["name"]
   end
 

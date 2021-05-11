@@ -5,8 +5,7 @@
 require 'httparty'
 require_relative '../config/configuration.rb'
 
-class AuthenticationHelper
-
+class ApiHelper
   # helper function to assist authentication when making request to api
   def self.make_req_to_api(url)
     full_token = Configuration.encode_token # call the encode function
