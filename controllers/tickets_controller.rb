@@ -83,7 +83,6 @@ class TicketViewer < Sinatra::Application
       ticket_id = params[:ticket_id]
       show_ticket_details(ticket_id)
       # erb(:ticket_details)
-
       content_type :json
       {
         "ticket"=> 
