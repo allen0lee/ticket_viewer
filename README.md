@@ -22,9 +22,8 @@ This will install the dependencies required to run the solution.
 3. Run the solution<br />
 In the repo directory window, type: `rackup  config.ru`<br />
 Open your web browser, type in: `localhost:9292`<br />
-You will see the 1st page of a list of tickets.<br />
-You can navigate between pages by clicking the page numbers at the bottom.<br />
-You can see the details of each ticket by clicking their subjects.
+By now you have finished setting up the backend.<br />
+Download the React frontend (Repo is [here](https://github.com/allen0lee/ticket-viewer-react)), follow the instructions there and you will see the results on the frontend.
 
 4. Run the test<br />
 This solution provides test on:
