@@ -1,14 +1,15 @@
 # ticket_viewer
 
 ### 1. Solution summary
-This solution is built to: 
+This is a full stack solution built to: 
 1. Connect to the Zendesk API
 2. Request all the tickets for my trial account
 3. Display them in a list
 4. Page through tickets with each page showing maximum 25 tickets
 5. Display individual ticket details
 <br /><br />
-Technologies used: Ruby 2.7.0, Ruby Sinatra, Minitest
+Technologies used: Ruby 2.7.0, Ruby Sinatra, Minitest, React <br />
+Repo for the React frontend is [here](https://github.com/allen0lee/ticket-viewer-react).
 
 ### 2. How to run this solution
 1. Install RVM(Ruby Version Manager) and Ruby 2.7.0 if you don't have it in your system. 
@@ -32,12 +33,12 @@ This solution provides test on:
 * Whether single ticket details are available
 * Whether the requester's name of a ticket is available
 <br /><br />
-To run the test, navigate to the `test` folder, run the test file by typing: `ruby authentication_helper_test.rb`
+To run the test, navigate to the `test` folder, run the test file by typing: `ruby api_helper_test.rb`
 
 ### 3. Key things to know
 This solution is built using a design pattern called model-view-controller(MVC).<br />
 * Model - `Ticket` class
-* View - render different pages (tickets list, single ticket details, error) on the web browser, using model data 
-* Controller - routes and methods that decide which view would be displayed and prepare the data needed by views 
+* View - render different pages (tickets list, single ticket details, error) on the web browser, using model data. A React frontend is developed to perform this task.  
+* Controller - API endpoints and methods that decide which view would be displayed and prepare the data needed by views 
   
        
