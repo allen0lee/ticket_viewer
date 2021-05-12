@@ -27,8 +27,8 @@ Download the React frontend (Repo is [here](https://github.com/allen0lee/ticket-
 4. Run the test<br />
 This solution provides test on:
 * User authication when making requests to the Zendesk API
-* Whether valid tickets are coming back
-* Whether single ticket details are available
+* Whether response of valid tickets is coming back
+* Whether response of single ticket details is coming back
 * Whether the requester's name of a ticket is available
 <br /><br />
 To run the test, navigate to the `test` folder, run the test file by typing: `ruby api_helper_test.rb`

@@ -47,7 +47,7 @@ class TicketViewer < Sinatra::Application
   end
 
   # route that shows whatever pages
-  get "/list/pages/:page_number" do
+  get "/tickets_list/page/:page_number" do
     begin
       page_number = params[:page_number]
       show_tickets_list(page_number)
@@ -78,7 +78,7 @@ class TicketViewer < Sinatra::Application
   end
 
   # route that shows the details of a ticket
-  get "/list/:ticket_id" do
+  get "/ticket/:ticket_id" do
     begin
       ticket_id = params[:ticket_id]
       show_ticket_details(ticket_id)

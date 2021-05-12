@@ -3,14 +3,14 @@
   <ul> 
     <% @tickets.each do |ticket|%>      
       <li class="ticket-list">
-        <a href="/list/<%= ticket.id %>"><%= ticket.subject %> </a>  
+        <a href="/ticket/<%= ticket.id %>"><%= ticket.subject %> </a>  
       </li>
       <%end %>    
   </ul>
 
   <div class="page-number">
     <% for i in 1..@pages%>
-      <a href="/list/pages/<%= i %>"><%= i %></a>  
+      <a href="/tickets_list/page/<%= i %>"><%= i %></a>  
     <% end %>    
   </div>
 
