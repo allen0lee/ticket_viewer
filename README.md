@@ -34,7 +34,7 @@ This solution provides test on:
 To run the test, navigate to the `test` folder, run the test file by typing: `ruby api_helper_test.rb`
 
 ### 3. Key things to know
-This solution is built using a design pattern called model-view-controller(MVC).<br />
+This solution is built using a design pattern called model-view-controller (MVC).<br />
 * Model - `Ticket` class
 * View - render different pages (tickets list, single ticket details, error) on the web browser, using model data. A React frontend is developed to perform this task.  
 * Controller - API endpoints and methods that decide which view would be displayed and prepare the data needed by views 
