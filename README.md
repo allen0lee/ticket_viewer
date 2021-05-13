@@ -20,7 +20,7 @@ If you can't find the command, install by typing: `gem install bundler`<br />
 This will install the dependencies required to run the backend.
 
 3. Run the backend<br />
-In the repo directory window, type: `rackup  config.ru`<br />
+In the repo directory window, type: `rackup config.ru`<br />
 By now you have finished setting up the backend.<br />
 Download the React frontend (Repo is [here](https://github.com/allen0lee/ticket-viewer-react)), follow the instructions there and you will see the results on the frontend.
 
