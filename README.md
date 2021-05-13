@@ -2,13 +2,13 @@
 
 ### 1. Solution summary
 This is a full stack solution built to: 
-1. Connect to the Zendesk API
-2. Request all the tickets for my trial account
-3. Display them in a list
-4. Page through tickets with each page showing maximum 25 tickets
-5. Display individual ticket details
+1. At the backend, connect to the Zendesk API
+2. At the backend, request all the tickets for my trial account
+3. At the frontend, display them in a list
+4. At the frontend, page through tickets with each page showing maximum 25 tickets
+5. At the frontend, display individual ticket details
 <br /><br />
-Technologies used: Ruby 2.7.0, Ruby Sinatra, Minitest, React <br />
+Technologies used: Ruby 2.7.0, Ruby Sinatra, HTTParty, Minitest, React <br />
 Repo for the React frontend is [here](https://github.com/allen0lee/ticket-viewer-react).
 
 ### 2. How to run this backend
@@ -17,7 +17,7 @@ Repo for the React frontend is [here](https://github.com/allen0lee/ticket-viewer
 2. Install dependencies<br />
 Clone this solution repo to your machine, inside the repo directory, type the following in terminal window: `bundle`<br /> 
 If you can't find the command, install by typing: `gem install bundler`<br />
-This will install the dependencies required to run the solution.
+This will install the dependencies required to run the backend.
 
 3. Run the backend<br />
 In the repo directory window, type: `rackup  config.ru`<br />
