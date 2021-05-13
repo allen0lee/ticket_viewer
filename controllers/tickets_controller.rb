@@ -15,7 +15,7 @@ class TicketViewer < Sinatra::Application
     response.headers['Access-Control-Allow-Origin'] = '*'
   end
 
-  # route that shows page 1 of tickets list 
+  # endpoint that gives json for tickets list page 1 
   get "/" do
     begin
       page_number = 1
@@ -46,7 +46,7 @@ class TicketViewer < Sinatra::Application
     end  
   end
 
-  # route that shows whatever pages
+  # endpoint that gives json for whatever page
   get "/tickets_list/page/:page_number" do
     begin
       page_number = params[:page_number]
@@ -77,7 +77,7 @@ class TicketViewer < Sinatra::Application
     end
   end
 
-  # route that shows the details of a ticket
+  # endpoint that gives json for single ticket details
   get "/ticket/:ticket_id" do
     begin
       ticket_id = params[:ticket_id]
@@ -106,7 +106,7 @@ class TicketViewer < Sinatra::Application
     end
   end
 
-  # function to make requests of showing whatever pages
+  # function to make requests of showing whatever page
   def show_tickets_list(page_number)
     @page_number = page_number
     @tickets_shown_per_page = 25
@@ -118,13 +118,13 @@ class TicketViewer < Sinatra::Application
     @pages = (@count.to_f / @tickets_shown_per_page).ceil
   end
 
-  # form an array of tickets found, each element is a ticket instance created using Ticket model
+  # form an array of tickets found, each element is a ticket instance created by Ticket model, using ticket data from the Zendesk API
   def find_tickets(res)
     if res.key?("tickets")
       tickets_info = res["tickets"]
       @tickets = []
       tickets_info.each do |ticket_info|
-        ticket = Ticket.new(ticket_info)
+        ticket = Ticket.new(ticket_info)  
         @tickets << ticket
       end
       @tickets
@@ -135,7 +135,7 @@ class TicketViewer < Sinatra::Application
     end
   end
 
-  # function to make requests of showing the details of a ticket
+  # function to make requests of showing single ticket details
   def show_ticket_details(ticket_id)
     @ticket_id = ticket_id
     url = "https://alanli.zendesk.com/api/v2/tickets/#{@ticket_id}.json"

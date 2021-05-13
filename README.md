@@ -11,7 +11,7 @@ This is a full stack solution built to:
 Technologies used: Ruby 2.7.0, Ruby Sinatra, Minitest, React <br />
 Repo for the React frontend is [here](https://github.com/allen0lee/ticket-viewer-react).
 
-### 2. How to run this solution
+### 2. How to run this backend
 1. Install RVM(Ruby Version Manager) and Ruby 2.7.0 if you don't have it in your system. 
 
 2. Install dependencies<br />
@@ -19,7 +19,7 @@ Clone this solution repo to your machine, inside the repo directory, type the fo
 If you can't find the command, install by typing: `gem install bundler`<br />
 This will install the dependencies required to run the solution.
 
-3. Run the solution<br />
+3. Run the backend<br />
 In the repo directory window, type: `rackup  config.ru`<br />
 By now you have finished setting up the backend.<br />
 Download the React frontend (Repo is [here](https://github.com/allen0lee/ticket-viewer-react)), follow the instructions there and you will see the results on the frontend.
@@ -38,5 +38,12 @@ This solution is built using a design pattern called model-view-controller(MVC).
 * Model - `Ticket` class
 * View - render different pages (tickets list, single ticket details, error) on the web browser, using model data. A React frontend is developed to perform this task.  
 * Controller - API endpoints and methods that decide which view would be displayed and prepare the data needed by views 
-  
+
+### API endpoints provided by my backend
+HTTP method | Path | Description
+------------ | ------------- | ------
+get | / | Gives json for setting up initial page on React 
+get | /tickets_list/page/:page_number | Gives json for switching pages on React
+get | /ticket/:ticket_id | Gives json for displaying single ticket details on React
+
        
