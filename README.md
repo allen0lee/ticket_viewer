@@ -42,8 +42,8 @@ This solution is built using a design pattern called model-view-controller (MVC)
 ### API endpoints provided by my backend
 HTTP method | Path | Description
 ------------ | ------------- | ------
-get | / | Gives json for setting up initial page on React 
-get | /tickets_list/page/:page_number | Gives json for switching pages on React
-get | /ticket/:ticket_id | Gives json for displaying single ticket details on React
+get | localhost:9292/ | Gives json for setting up initial page on React 
+get | localhost:9292/tickets_list/page/:page_number | Gives json for switching pages on React
+get | localhost:9292/ticket/:ticket_id | Gives json for displaying single ticket details on React
 
        
