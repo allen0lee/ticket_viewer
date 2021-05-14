@@ -159,7 +159,13 @@ class TicketViewer < Sinatra::Application
   def get_user_name(requester_id)
     url = "https://alanli.zendesk.com/api/v2/users/#{requester_id}.json"
     res = ApiHelper.make_req_to_api(url)
-    name = res["user"]["name"]
+    if res.key?("user")
+      name = res["user"]["name"]
+    elsif res.key?("error")
+      raise res["error"]
+    else
+      raise "unknown error from API"
+    end
   end
 
 end
