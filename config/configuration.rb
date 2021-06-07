@@ -3,7 +3,7 @@
 class Configuration
   def self.encode_token
     email_address = "allen0lee@gmail.com"
-    token = "bhSIXtaecGvqTHiJfx63dUNJxzbuXeBRr5ZfAXcy"
+    token = "oCQZs1HgsHEVDlJqDK9UbJDPgi97dNrwK6YvGCKL"
     full_token = Base64.strict_encode64("#{email_address}/token:#{token}")
   end
 end

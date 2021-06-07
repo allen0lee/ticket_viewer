@@ -19,7 +19,7 @@ class TicketViewer < Sinatra::Application
   get "/" do
     begin
       page_number = 1
-      show_tickets_list(page_number)
+      @tickets, @count, @pages = show_tickets_list(page_number)
       # erb(:tickets_list)
       content_type :json
       {
@@ -50,7 +50,7 @@ class TicketViewer < Sinatra::Application
   get "/tickets_list/page/:page_number" do
     begin
       page_number = params[:page_number]
-      show_tickets_list(page_number)
+      @tickets, @count, @pages = show_tickets_list(page_number)
       # erb(:tickets_list)
       content_type :json
       {
@@ -81,7 +81,7 @@ class TicketViewer < Sinatra::Application
   get "/ticket/:ticket_id" do
     begin
       ticket_id = params[:ticket_id]
-      show_ticket_details(ticket_id)
+      @ticket = show_ticket_details(ticket_id)
       # erb(:ticket_details)
       content_type :json
       {
@@ -108,14 +108,14 @@ class TicketViewer < Sinatra::Application
 
   # function to make requests of showing whatever page
   def show_tickets_list(page_number)
-    @page_number = page_number
     @tickets_shown_per_page = 25
-    url = "https://alanli.zendesk.com/api/v2/tickets.json?page=#{@page_number}&per_page=#{@tickets_shown_per_page}"
+    url = "https://alanli1.zendesk.com/api/v2/tickets.json?page=#{page_number}&per_page=#{@tickets_shown_per_page}"
 
     res = ApiHelper.make_req_to_api(url)
     @tickets = find_tickets(res)
     @count = res["count"]
     @pages = (@count.to_f / @tickets_shown_per_page).ceil
+    return @tickets, @count, @pages
   end
 
   # form an array of tickets found, each element is a ticket instance created by Ticket model, using ticket data from the Zendesk API
@@ -137,12 +137,12 @@ class TicketViewer < Sinatra::Application
 
   # function to make requests of showing single ticket details
   def show_ticket_details(ticket_id)
-    @ticket_id = ticket_id
-    url = "https://alanli.zendesk.com/api/v2/tickets/#{@ticket_id}.json"
+    url = "https://alanli1.zendesk.com/api/v2/tickets/#{ticket_id}.json"
 
     res = ApiHelper.make_req_to_api(url)
     @ticket = find_ticket_details(res)
     @ticket.requester_name = get_user_name(@ticket.requester_id)
+    return @ticket
   end
 
   def find_ticket_details(res)
@@ -157,7 +157,7 @@ class TicketViewer < Sinatra::Application
   end
 
   def get_user_name(requester_id)
-    url = "https://alanli.zendesk.com/api/v2/users/#{requester_id}.json"
+    url = "https://alanli1.zendesk.com/api/v2/users/#{requester_id}.json"
     res = ApiHelper.make_req_to_api(url)
     if res.key?("user")
       name = res["user"]["name"]
