@@ -15,37 +15,6 @@ class TicketViewer < Sinatra::Application
     response.headers['Access-Control-Allow-Origin'] = '*'
   end
 
-  # endpoint that gives json for tickets list page 1 
-  get "/" do
-    begin
-      page_number = 1
-      @tickets, @count, @pages = show_tickets_list(page_number)
-      # erb(:tickets_list)
-      content_type :json
-      {
-        "tickets"=> @tickets.map{|x|
-          {
-            "id"=> x.id,
-            "status"=> x.status,
-            "subject"=> x.subject,
-            # "requester"=> get_user_name(x.requester_id),
-            "requested"=> x.created_at
-          }
-        },
-        "pages"=> @pages,
-        "count"=> @count
-      }.to_json 
-
-    rescue => ex
-      @error_message = ex.message
-      # erb(:error)
-      content_type :json
-      {
-        "error"=> @error_message
-      }.to_json 
-    end  
-  end
-
   # endpoint that gives json for whatever page
   get "/tickets_list/page/:page_number" do
     begin
@@ -66,7 +35,7 @@ class TicketViewer < Sinatra::Application
         "pages"=> @pages,
         "count"=> @count
       }.to_json 
-
+      
     rescue => ex
       @error_message = ex.message
       # erb(:error)
